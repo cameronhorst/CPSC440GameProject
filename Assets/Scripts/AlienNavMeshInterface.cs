@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AlienNavMeshInterface : MonoBehaviour {
 
-    private NavMeshObstacle nmo;
+    public NavMeshObstacle nmo;
     public float startDistanceFromPlayer;
     private SmallAlienHealth health;
     public GameObject SmallAlienNavmeshAgentPrefab;
@@ -49,12 +49,13 @@ public class AlienNavMeshInterface : MonoBehaviour {
             usingNavmeshAgent = true;
             _SmallAlienAgent.enabled = true;
             Invoke("FindAttackPosition", 1f);
+            _SmallAlienAgent.transform.rotation = Quaternion.LookRotation(transform.forward);
         }
         else if (!useNavMesh)
         {
             lookingForward = false;
             usingNavmeshAgent = false;
-            _SmallAlienAgent.enabled = false;
+            //_SmallAlienAgent.enabled = false;
             //_SmallAlienAgent.gameObject.SetActive(false);
         }
     }
@@ -94,7 +95,8 @@ public class AlienNavMeshInterface : MonoBehaviour {
     public void SetNavMeshAgentDestination(Vector3 target, bool track = false, GameObject targetGO = null)
     {
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(target, out hit, 2.0f, NavMesh.AllAreas) && _SmallAlienAgent.gameObject.activeSelf)
+        Debug.Log("SetDestination");
+        if (NavMesh.SamplePosition(target, out hit, 20, NavMesh.AllAreas))
         {
             _SmallAlienAgent.SetDestination(hit.position);
             lastTargetPos = hit.position;
@@ -121,7 +123,7 @@ public class AlienNavMeshInterface : MonoBehaviour {
     {
         if (usingNavmeshAgent && !isInRangeOfTarget && !attacking)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_SmallAlienAgent.transform.forward), Time.deltaTime * 15f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_SmallAlienAgent.transform.forward), Time.deltaTime * 30f);
         }
         transform.Translate(anims.deltaPosition, Space.World);
 
@@ -289,7 +291,7 @@ public class AlienNavMeshInterface : MonoBehaviour {
             else if (isInRangeOfTarget == false)
             {
                 isInRangeOfTarget = true;
-                if (FindAttackPosition() && !ObjectInWay)
+                if (!ObjectInWay)
                 {
                     _SmallAlienAgent.transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
                     JumpToAttackPosition();
@@ -329,7 +331,7 @@ public class AlienNavMeshInterface : MonoBehaviour {
 
         if (isInRangeOfTarget && !ObjectInWay)
         {
-            Vector3 lookRotation = (Vector3.zero - transform.position);
+            Vector3 lookRotation = (target.transform.position - transform.position);
             lookRotation.Set(lookRotation.x, 0, lookRotation.z);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), Time.deltaTime);
         }

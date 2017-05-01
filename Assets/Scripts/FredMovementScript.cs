@@ -35,6 +35,8 @@ public class FredMovementScript : MonoBehaviour {
     public float PickUpInForce = 3f;
     public float PickUpUpForce = 12f;
     public GameObject TractorBeam;
+    public PlayerManager playerManager;
+
 
     // Use this for initialization
     void Start ()
@@ -60,6 +62,7 @@ public class FredMovementScript : MonoBehaviour {
             fetchingGems = true;
             StopAllCoroutines();
             StartCoroutine(Fetching());
+            ScannerAnims.SetTrigger("StopScanning");
         }
     }
 
@@ -144,9 +147,9 @@ public class FredMovementScript : MonoBehaviour {
                 //TurnBeforeMoving
                 startTurnTime = Time.time;
                 Quaternion startRotation = transform.rotation;
-                while (Time.time < startTurnTime + TurnTime)
+                while (Time.time < startTurnTime + (TurnTime / 2f))
                 {
-                    transform.rotation = Quaternion.Lerp(startRotation, Quaternion.LookRotation(nextWaypoint.transform.position - transform.position), (Time.time - startTurnTime) / TurnTime);
+                    transform.rotation = Quaternion.Lerp(startRotation, Quaternion.LookRotation(nextWaypoint.transform.position - transform.position), (Time.time - startTurnTime) / (TurnTime / 2f));
                     yield return null;
                 }
 
@@ -216,9 +219,9 @@ public class FredMovementScript : MonoBehaviour {
                 //turn
                 startTurnTime = Time.time;
                 Quaternion startRotation = transform.rotation;
-                while (Time.time < startTurnTime + TurnTime)
+                while (Time.time < startTurnTime + (TurnTime / 2f))
                 {
-                    transform.rotation = Quaternion.Lerp(startRotation, Quaternion.LookRotation(_gemTarget - transform.position), (Time.time - startTurnTime) /TurnTime);
+                    transform.rotation = Quaternion.Lerp(startRotation, Quaternion.LookRotation(_gemTarget - transform.position), (Time.time - startTurnTime) / (TurnTime / 2f));
                     yield return null;
                 }
 
@@ -232,7 +235,7 @@ public class FredMovementScript : MonoBehaviour {
                     //start moving to scan pos
                     while (distanceToGems > scanStopDistance)
                     {
-                        float currentSpeed = Mathf.Lerp(0, maxDistPerSec / 2f, AccelerationCurve.Evaluate((Time.time - startAccelerationTime) / AccelerationTime));
+                        float currentSpeed = Mathf.Lerp(0, maxDistPerSec, AccelerationCurve.Evaluate((Time.time - startAccelerationTime) / AccelerationTime));
                         speed = currentSpeed;
                         transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
                         distanceToGems = Vector3.Distance(transform.position, _gemTarget);
@@ -262,6 +265,7 @@ public class FredMovementScript : MonoBehaviour {
 
             float startCollectTime = Time.time;
             TractorBeam.SetActive(true);
+            currentTargetGem.FadeOutIcon();
             while(Time.time < startCollectTime + gemPickUpTime)
             {
                 for(int i = 0; i < currentTargetGem.spawnedGems.Length; i++)
@@ -275,7 +279,7 @@ public class FredMovementScript : MonoBehaviour {
                 yield return null;
             }
             TractorBeam.SetActive(false);
-
+            playerManager.ScanData(true);
             //Destroy(currentTargetGem);
 
             if (GemsToCollect.Count == 0)
@@ -290,6 +294,7 @@ public class FredMovementScript : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         currentState = State.Wandering;
         readyToMove = true;
+        ScannerAnims.ResetTrigger("StopScanning");
         StartCoroutine(Wandering());
 
     }
@@ -502,7 +507,8 @@ public class FredMovementScript : MonoBehaviour {
         //loop for as many objects to scan
         for(int i = 0; i < objectsToScan.Length; i++)
         {
-            if(objectsToScan[i] == null)
+
+            if (objectsToScan[i] == null)
             {
                 continue;
             }
@@ -584,17 +590,20 @@ public class FredMovementScript : MonoBehaviour {
 
             //scan target
             ScannerAnims.SetTrigger("Scan");
+            playerManager.ScanData();
+
             yield return new WaitForSeconds(4);
             if (objectsToScan[i].containsGems)
             {
                 //trigger found gems particles over rocks
+                
+                objectsToScan[i].GetComponent<BreakableRock>().ScanRock();
             }
 
 
             //delay before next iteration
             yield return new WaitForSeconds(3);
         }
-
 
 
 

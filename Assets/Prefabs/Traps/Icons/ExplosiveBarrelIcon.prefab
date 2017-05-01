@@ -124,6 +124,7 @@ MonoBehaviour:
   cost: 0
   purchased: 1
   icon: {fileID: 0}
+  trapPrefab: {fileID: 0}
   slot: 1
 --- !u!114 &114969701170398984
 MonoBehaviour:

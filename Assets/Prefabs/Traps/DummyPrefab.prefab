@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 114279792587701736}
   - component: {fileID: 114702189122107404}
   - component: {fileID: 114794036706506812}
+  - component: {fileID: 135118461802559736}
   m_Layer: 18
   m_Name: DummyPrefab
   m_TagString: Untagged
@@ -127,8 +128,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1961167210848956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.14, y: -0.80509573, z: 9.59}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 5.47995, y: -0.80509573, z: 5.0002136}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4999312932929924}
   - {fileID: 4653198089657816}
@@ -428,7 +429,7 @@ BoxCollider:
   m_GameObject: {fileID: 1961167210848956}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 4, y: 2, z: 4}
   m_Center: {x: 0, y: 1.09, z: 0}
@@ -543,4 +544,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   distratedAliensIndex: 0
-  drainHealthMultiplier: 0
+  drainHealthMultiplier: 1
+--- !u!135 &135118461802559736
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961167210848956}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}

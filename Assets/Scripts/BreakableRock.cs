@@ -25,6 +25,8 @@ public class BreakableRock : MonoBehaviour {
     public float breakForce = 2f;
     public Color[] hitColors;
     private bool broken;
+    ParticleSystem ScanParticles = null;
+
 
     // Use this for initialization
     void Start()
@@ -52,6 +54,12 @@ public class BreakableRock : MonoBehaviour {
             gemGroup.CreateGems(minNumGems, maxNumGems);
         }
 
+        if (transform.FindChild("RockScanParticles"))
+        {
+            ScanParticles = transform.FindChild("RockScanParticles").GetComponent<ParticleSystem>();
+            ScanParticles.gameObject.SetActive(false);
+        }
+
     }
 
 
@@ -77,13 +85,29 @@ public class BreakableRock : MonoBehaviour {
         }
     }
 
+
+    public void ScanRock()
+    {
+        if(ScanParticles != null)
+        {
+            ScanParticles.gameObject.SetActive(true);
+        }
+    }
+
     IEnumerator Break(Vector3 impactPos)
     {
+        gemGroup.createGemIcon();
+
         foreach(GameObject go in OuterShell)
         {
             Destroy(go);
         }
         List<Rigidbody> ChunkRBs = new List<Rigidbody>();
+
+        if (ScanParticles != null)
+        {
+            ScanParticles.Stop();
+        }
 
         foreach(GameObject Chunk in Chunks)
         {
@@ -113,6 +137,10 @@ public class BreakableRock : MonoBehaviour {
             Destroy(Chunk);
         }
         Destroy(gameObject);
+        if(ScanParticles != null)
+        {
+            Destroy(ScanParticles.gameObject);
+        }
     }
 
     IEnumerator HitFade()

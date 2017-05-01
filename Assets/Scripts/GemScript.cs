@@ -20,6 +20,7 @@ public class GemScript : MonoBehaviour {
     public void ScanGem()
     {
         GemGroup.collectGems();
+        GemGroup.Unhighlight(true);
     }
 
     public void Highlight()

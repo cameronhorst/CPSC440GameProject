@@ -62,5 +62,13 @@ MonoBehaviour:
   - {fileID: 1211232199195276, guid: 092655561007baa4ba014f4d3901cb80, type: 2}
   gemSpawnRadius: 0.5
   highlightingGems: 0
+  spawnedGems: []
   highlightFadeTime: 0.5
   GemLocationWaypoint: {fileID: 0}
+  GemIconPrefab: {fileID: 1246673865896384, guid: 500d10b9ccef6614b995fe2f5c53bb7f,
+    type: 2}
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  InvisibleColor: {r: 0.92140085, g: 0.7058823, b: 1, a: 0}
+  IconFadeTime: 0.33

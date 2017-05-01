@@ -15,6 +15,13 @@ public class GemGroupScript : MonoBehaviour {
     ContextualScreenManager ContextualScreen;
     ContextualScreenPage ScanPage;
     FredMovementScript Fred;
+    public GameObject GemIconPrefab;
+    private Color GemIconStartColor;
+    public LayerMask GroundMask;
+    private GameObject _gemIcon;
+    private Material _gemIconMat;
+    public Color InvisibleColor;
+    public float IconFadeTime = 0.25f;
 
 	// Use this for initialization
 	void Start ()
@@ -27,6 +34,7 @@ public class GemGroupScript : MonoBehaviour {
         //call CreateGems(min, max)
 
         //CreateGems(2, 6);
+        GemIconStartColor = GemIconPrefab.GetComponent<MeshRenderer>().sharedMaterial.color;
 	}
 
 
@@ -60,6 +68,24 @@ public class GemGroupScript : MonoBehaviour {
 			
     }
 
+
+
+    public void createGemIcon()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down,  out hit, 3f, GroundMask))
+        {
+            
+            _gemIcon = (GameObject)Instantiate(GemIconPrefab, hit.point, Quaternion.identity, transform);
+            Quaternion rotation = Quaternion.FromToRotation(_gemIcon.transform.up, hit.normal);
+            _gemIcon.transform.rotation = rotation;
+            _gemIconMat = _gemIcon.GetComponent<MeshRenderer>().material;
+            _gemIconMat.color = InvisibleColor;
+            _gemIcon.GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
+
+
     public void Highlight()
     {
         startHighlightTime = Time.time;
@@ -72,11 +98,49 @@ public class GemGroupScript : MonoBehaviour {
         }
     }
 
-    public void Unhighlight()
+    public void Unhighlight(bool stopNow = false)
     {
+        if (stopNow)
+        {
+            ContextualScreen.SwitchToDefaultPage(ScanPage);
+            highlightingGems = false;
+        }
+        else
+        {
+            StopCoroutine(TryToStopHighlighting());
+            StartCoroutine(TryToStopHighlighting());
+        }
 
-        StopCoroutine(TryToStopHighlighting());
-        StartCoroutine(TryToStopHighlighting());
+    }
+
+
+
+    IEnumerator FadingInIcon()
+    {
+        float startTime = Time.time;
+        _gemIcon.GetComponent<MeshRenderer>().enabled = true;
+        while(Time.time < startTime + IconFadeTime)
+        {
+            _gemIconMat.color = Color.Lerp(InvisibleColor, GemIconStartColor, (Time.time - startTime) / IconFadeTime);
+            yield return null;
+        }
+    }
+
+    public void FadeOutIcon()
+    {
+        StartCoroutine(FadingOutIcon());
+    }
+
+    IEnumerator FadingOutIcon()
+    {
+        float startTime = Time.time;
+        while (Time.time < startTime + IconFadeTime)
+        {
+            _gemIconMat.color = Color.Lerp(GemIconStartColor, InvisibleColor, (Time.time - startTime) / IconFadeTime);
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.2f);
+        Destroy(_gemIcon);
     }
 
     IEnumerator TryToStopHighlighting()
@@ -100,6 +164,7 @@ public class GemGroupScript : MonoBehaviour {
         {
             calledFred = true;
             Fred.ScanGem(this);
+            StartCoroutine(FadingInIcon());
             foreach (GameObject _gem in spawnedGems)
             {
                 _gem.GetComponent<SphereCollider>().enabled = false;

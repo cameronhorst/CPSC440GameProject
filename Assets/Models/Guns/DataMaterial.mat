@@ -50,7 +50,7 @@ Material:
       second:
         m_Texture: {fileID: 2800000, guid: 5de5181fac2cea440af948263ec4b1d7, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0.3, y: 0}
+        m_Offset: {x: 0.6, y: 0}
     - first:
         name: _MetallicGlossMap
       second:
@@ -124,7 +124,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.45894283, g: 0.4705882, b: 0.45674738, a: 0.447}
+      second: {r: 0.45894283, g: 0.4705882, b: 0.45674738, a: 0.241}
     - first:
         name: _Emission
       second: {r: 0, g: 0, b: 0, a: 0}

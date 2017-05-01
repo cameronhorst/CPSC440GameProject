@@ -31,6 +31,7 @@ public class DummyTrap : MonoBehaviour {
 			AlienNavMeshInterface thisAlien = other.GetComponentInParent<AlienNavMeshInterface>();
 			SmallAlienAI thisAlienAI = other.GetComponentInParent<SmallAlienAI>();
 			thisAlien.target = gameObject;
+            thisAlien.SetNavMeshAgentDestination(transform.position);
 			thisAlienAI.SetState(SmallAlienAI.States.Navigating);
 			thisAlien.attackingPlayer = false;
 			health.healthRateMultiplier += drainHealthMultiplier;
@@ -48,9 +49,10 @@ public class DummyTrap : MonoBehaviour {
 				SmallAlienAI thisAlienAI = distractedAliens[i].GetComponent<SmallAlienAI>();
 
 				thisAlien.target = playerLoc;
-				thisAlienAI.SetState(SmallAlienAI.States.Navigating);
-				thisAlien.FindAttackPosition();
-				thisAlien.attackingPlayer = true;
+                thisAlien.SetNavMeshAgentDestination(playerLoc.transform.position);
+                thisAlienAI.SetState(SmallAlienAI.States.Navigating);
+                thisAlien.nmo.enabled = false;
+                thisAlien.attackingPlayer = true;
 			}
 		}
 	}

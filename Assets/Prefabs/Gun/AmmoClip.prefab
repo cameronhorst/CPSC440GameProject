@@ -298,8 +298,8 @@ MonoBehaviour:
   ammoLeft: 0
   AmmoColors:
   - {r: 0.15686275, g: 1, b: 0, a: 1}
-  - {r: 1, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.15686275, g: 0.6862745, b: 0, a: 0.7254902}
+  - {r: 0.15686275, g: 0.49019608, b: 0, a: 0.5294118}
   lowAmmoColorThreshold: 0.25
   midAmmoColorThreshold: 0.66
   flySpeed: 3.5
