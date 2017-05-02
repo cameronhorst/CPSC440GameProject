@@ -274,7 +274,7 @@ public class FredMovementScript : MonoBehaviour {
                     InForce.Set(InForce.x, 0, InForce.z);
                     InForce.Normalize();
                     Vector3 force = (InForce * PickUpInForce) + (Vector3.up * PickUpUpForce);
-                    currentTargetGem.spawnedGems[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Acceleration);
+                    currentTargetGem.spawnedGems[i].GetComponent<Rigidbody>().AddForce(force * Time.fixedDeltaTime, ForceMode.Acceleration);
                 }
                 yield return null;
             }

@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf53b1926cc030439749a5782ef8617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwableObject: {fileID: 1350685366864302, guid: 8cc2572ab6f55a746a40db418105532c,
+  throwableObject: {fileID: 1652488913223152, guid: 96bedce51eed51642a77c14f6fe53807,
     type: 2}
   throwTransform: {fileID: 0}
   rotationalForce: 60

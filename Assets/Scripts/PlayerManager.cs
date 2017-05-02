@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour {
     public GameObject ScanProgressBar;
     private Material ScanProgressBarMat;
     public float barUpdateTime;
+    public Animator ShipAnims;
+    public bool calledShip = false;
 
     public void ScanData(bool gems = false)
     {
@@ -37,6 +39,14 @@ public class PlayerManager : MonoBehaviour {
             else
             {
                 StartCoroutine(UpdateProgressBar());
+            }
+        }
+        else
+        {
+            if (!calledShip)
+            {
+                calledShip = true;
+                ShipAnims.SetTrigger("FlyIn");
             }
         }
     }

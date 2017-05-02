@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Planet
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: ShipMat
+  m_Shader: {fileID: 4800000, guid: f6facff6ff7250c499f56534ae72d0f0, type: 3}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 0
+  m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -69,18 +69,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Ramp
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ToonShade
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
         name: _BumpScale
@@ -99,7 +87,7 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0
+      second: 0.5
     - first:
         name: _GlossyReflections
       second: 1
@@ -113,14 +101,11 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
-        name: _Outline
-      second: 0.005
-    - first:
         name: _Parallax
       second: 0.02
     - first:
         name: _Shininess
-      second: 0.11
+      second: 0.057
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -139,16 +124,13 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 0.791, b: 0.253, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _Emission
-      second: {r: 0, g: 0, b: 0, a: 0}
+      second: {r: 0.125, g: 0.08455882, b: 0.09041581, a: 0.372}
     - first:
         name: _EmissionColor
-      second: {r: 0.42647058, g: 0, b: 0.008823458, a: 0}
-    - first:
-        name: _OutlineColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _SpecColor
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0, g: 0.6275863, b: 1, a: 1}

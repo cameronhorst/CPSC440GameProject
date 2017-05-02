@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerHealthScript : MonoBehaviour {
 
@@ -17,18 +20,26 @@ public class PlayerHealthScript : MonoBehaviour {
     private float currentRegenDelay;
     private float currentHealth;
     private HealthBar PlayerHealthBar;
+    public HeartIconScript HeartIcon;
+    public bool dead = false;
+    public GameObject DeathGroup;
+    public string levelToLoad;
+
 
     public void DealDamage(float damage)
     {
-        if((currentHealth - damage) <= 0)
+        if((currentHealth - damage) <= 0 && !dead)
         {
             currentHealth = 0;
+            dead = true;
             Die();
+            HeartIcon.HeartBreak();
         }
         else
         {
             currentHealth = currentHealth - damage;
 			UpdateDebugBar ();
+            HeartIcon.UpdateHeartSize(currentHealth / PlayerStartHealth);
             PlayerHealthBar.SetHealthBar(currentHealth / PlayerStartHealth);
             ContextualScreen.SwitchToPage(Health);
             if (canRegenerateHealth)
@@ -49,7 +60,15 @@ public class PlayerHealthScript : MonoBehaviour {
     void Die()
     {
         Debug.Log("Dead");
+        DeathGroup.SetActive(true);
+        Invoke("switchBackToDemo", 3f);
     }
+
+    void switchBackToDemo()
+    {
+        SceneManager.LoadScene(levelToLoad);
+    }
+
 
 	// Use this for initialization
 	void Start ()
@@ -81,6 +100,7 @@ public class PlayerHealthScript : MonoBehaviour {
             {
                 currentHealth += HealthRegeneratedPerSecond * Time.deltaTime;
 				UpdateDebugBar ();
+                HeartIcon.UpdateHeartSize(currentHealth / PlayerStartHealth);
                 PlayerHealthBar.SetHealthBar(currentHealth / PlayerStartHealth);
             }
             else if (!canRegenerateHealth)
