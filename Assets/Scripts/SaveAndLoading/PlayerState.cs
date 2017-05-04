@@ -51,11 +51,11 @@ public class PlayerState : MonoBehaviour
 	// Singleton method, so that only one of these exist.
 	void Awake()
 	{
-		if (Instance == null)
-			Instance = this;
+		//if (Instance == null)
+			//Instance = this;
 
-		if (Instance != this)
-			Destroy(gameObject);
+		//if (Instance != this)
+			//Destroy(gameObject);
 
 	}
 

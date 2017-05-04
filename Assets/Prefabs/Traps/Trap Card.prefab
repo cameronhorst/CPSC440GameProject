@@ -83,8 +83,8 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929536329781792}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -248,5 +248,4 @@ MonoBehaviour:
   trapIconPos: {fileID: 4342417168458894}
   fadeTime: 0.1
   StartVisible: 0
-  displayedTrap: {fileID: 0}
   associatedTrap: {fileID: 0}

@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 83fc1f4d5fbd6ce479c1f488b8053a3e, type: 3}
   m_ShaderKeywords: UNITY_UI_ALPHACLIP _ALPHAPREMULTIPLY_ON _EMISSION
   m_LightmapFlags: 0
-  m_CustomRenderQueue: 3200
+  m_CustomRenderQueue: 3300
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -160,7 +160,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0, g: 0.7931032, b: 1, a: 1}
+      second: {r: 0, g: 0.7931032, b: 1, a: 0.834}
     - first:
         name: _EmisColor
       second: {r: 0.88235295, g: 0.31790656, b: 0.31790656, a: 0.572}

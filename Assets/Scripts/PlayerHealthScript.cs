@@ -61,7 +61,7 @@ public class PlayerHealthScript : MonoBehaviour {
     {
         Debug.Log("Dead");
         DeathGroup.SetActive(true);
-        Invoke("switchBackToDemo", 3f);
+        Invoke("switchBackToDemo", 8f);
     }
 
     void switchBackToDemo()
