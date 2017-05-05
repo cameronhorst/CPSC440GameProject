@@ -45,6 +45,7 @@ public class TrapCard : MonoBehaviour {
         {
             purchaseConfirmation = true;
             StartCoroutine(TrapPurchaseConfirmation());
+            confirmationGroup.setTrapCard(this);   
         }
     }
 
@@ -91,6 +92,53 @@ public class TrapCard : MonoBehaviour {
             }
             yield return null;
         }
+    }
+
+    public void Purchase()
+    {
+        StopCoroutine(TrapPurchaseConfirmation());
+        StartCoroutine(FadeToStartColor());
+    }
+
+    public void Cancel()
+    {
+        StopCoroutine(TrapPurchaseConfirmation());
+        StartCoroutine(FadeToLockedColor());
+    }
+
+    IEnumerator FadeToLockedColor()
+    {
+        float startTime = Time.time;
+        Color startColor = ObjectsToFade[0].material.color;
+
+        while(Time.time < startTime + fadeTime)
+        {
+            for(int i = 0; i < ObjectsToFade.Count; i++)
+            {
+                ObjectsToFade[i].material.color = Color.Lerp(startColor, LockedColor, (Time.time - startTime) / fadeTime);
+            }
+            yield return null;
+        }
+
+        yield break;
+    }
+
+    IEnumerator FadeToStartColor()
+    {
+        Debug.Log("FadeToStartColor");
+        float startTime = Time.time;
+        Color startColor = ObjectsToFade[0].material.color;
+
+        while (Time.time < startTime + fadeTime)
+        {
+            for (int i = 0; i < ObjectsToFade.Count; i++)
+            {
+                ObjectsToFade[i].material.color = Color.Lerp(startColor, StartColor, (Time.time - startTime) / fadeTime);
+            }
+            yield return null;
+        }
+
+        yield break;
     }
 
     IEnumerator TrapPurchaseConfirmation()

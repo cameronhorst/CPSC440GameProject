@@ -917,6 +917,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 0.5
   invisibleColor: {r: 0, g: 0, b: 0, a: 0}
+  confirming: 0
+  trapcard: {fileID: 0}
 --- !u!4 &70625137 stripped
 Transform:
   m_PrefabParentObject: {fileID: 482300, guid: 60270cf52a5e94998a5a335989159738, type: 2}
@@ -10178,7 +10180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vrModeOnly: 0
-  unityVRModeEnabled: 1
+  unityVRModeEnabled: 0
 --- !u!114 &811902499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14886,6 +14888,52 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1095339877}
   m_Mesh: {fileID: 4300102, guid: 62d2d215eb49d6a4dab3aa305b36fcf2, type: 3}
+--- !u!1 &1125297493 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100002, guid: 031be8f25ba44cb4091f0f5a5afe7464, type: 3}
+  m_PrefabInternal: {fileID: 2099141185}
+--- !u!65 &1125297494
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1125297493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.68, y: 0.32, z: 0.5}
+  m_Center: {x: 0, y: 0.03, z: 0}
+--- !u!114 &1125297495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1125297493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 64858648}
+          m_MethodName: confirm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1129849780
 GameObject:
   m_ObjectHideFlags: 0
@@ -15352,7 +15400,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400088, guid: 62d2d215eb49d6a4dab3aa305b36fcf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1169265349}
-  m_LocalRotation: {x: -0.49827883, y: -0.49827883, z: 0.50171524, w: 0.50171524}
+  m_LocalRotation: {x: -0.49827886, y: -0.49827886, z: 0.5017153, w: 0.5017153}
   m_LocalPosition: {x: -302.7779, y: 113.89146, z: 451.6086}
   m_LocalScale: {x: 17.405758, y: 8.672953, z: 3.202162}
   m_Children: []
@@ -18227,6 +18275,52 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1316899924}
   m_Mesh: {fileID: 4300108, guid: 62d2d215eb49d6a4dab3aa305b36fcf2, type: 3}
+--- !u!1 &1317637362 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100002, guid: b04e0cf4ef897fd4f8bcd2cc0ab0b272, type: 3}
+  m_PrefabInternal: {fileID: 1342816652}
+--- !u!65 &1317637363
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1317637362}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.68, y: 0.32, z: 0.5}
+  m_Center: {x: 1.02, y: 0.03, z: 0}
+--- !u!114 &1317637364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1317637362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 64858648}
+          m_MethodName: cancel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1317840864
 GameObject:
   m_ObjectHideFlags: 0
@@ -18881,6 +18975,18 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cefa3ccf4f71eec4a8bd7090c9fe3f9c, type: 2}
+    - target: {fileID: 100002, guid: b04e0cf4ef897fd4f8bcd2cc0ab0b272, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b04e0cf4ef897fd4f8bcd2cc0ab0b272, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b04e0cf4ef897fd4f8bcd2cc0ab0b272, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b04e0cf4ef897fd4f8bcd2cc0ab0b272, type: 3}
   m_IsPrefabParent: 0
@@ -23544,7 +23650,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400068, guid: 62d2d215eb49d6a4dab3aa305b36fcf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1747466787}
-  m_LocalRotation: {x: 0.49827883, y: -0.49827883, z: -0.50171524, w: 0.50171524}
+  m_LocalRotation: {x: 0.49827886, y: -0.49827886, z: -0.5017153, w: 0.5017153}
   m_LocalPosition: {x: -294.48953, y: 113.75565, z: 452.30838}
   m_LocalScale: {x: 16.752838, y: 7.5840354, z: 2.0409856}
   m_Children: []
@@ -26325,7 +26431,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2030932300}
-  m_LocalRotation: {x: 0.030021008, y: 0.34214732, z: -0.013010577, w: 0.9390765}
+  m_LocalRotation: {x: 0.03002101, y: 0.34214735, z: -0.013010578, w: 0.93907654}
   m_LocalPosition: {x: -3.634, y: 1.004, z: -3.431}
   m_LocalScale: {x: 0.83, y: 0.83, z: 0.83}
   m_Children:
@@ -26584,6 +26690,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4973584208469514, guid: 297be8245386e064cab680cf69797c1a, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929536329781792, guid: 297be8245386e064cab680cf69797c1a, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -27352,6 +27462,18 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cefa3ccf4f71eec4a8bd7090c9fe3f9c, type: 2}
+    - target: {fileID: 100004, guid: 031be8f25ba44cb4091f0f5a5afe7464, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 031be8f25ba44cb4091f0f5a5afe7464, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 031be8f25ba44cb4091f0f5a5afe7464, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 031be8f25ba44cb4091f0f5a5afe7464, type: 3}
   m_IsPrefabParent: 0

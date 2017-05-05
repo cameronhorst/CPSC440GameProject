@@ -9,6 +9,32 @@ public class ConfirmationGroup : MonoBehaviour
     public float fadeTime;
     Color[] startColors;
     public Color invisibleColor;
+    public bool confirming = false;
+    public TrapCard trapcard;
+
+
+    public void setTrapCard(TrapCard _trapcard)
+    {
+        trapcard = _trapcard;
+    }
+
+
+    public void confirm()
+    {
+        if(trapcard != null)
+        {
+            trapcard.Purchase();
+        }
+    }
+
+    public void cancel()
+    {
+        if (trapcard != null)
+        {
+            trapcard.Cancel();
+        }
+    }
+
 
 	// Use this for initialization
 	void Start ()
@@ -29,13 +55,18 @@ public class ConfirmationGroup : MonoBehaviour
         transform.position = cardPosition;
 
         StartCoroutine(FadingIn());
+        confirming = true;
 
     }
+
+
+
 
 
     public void FadeOut()
     {
         StartCoroutine(FadingOut());
+        confirming = false;
     }
 
 

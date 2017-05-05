@@ -51,6 +51,10 @@ public class TrapCardSpawner : MonoBehaviour {
 
     IEnumerator SlidingRight(bool left = false)
     {
+        if (confirmationGroup.confirming)
+        {
+            yield break;
+        }
         sliding = true;
         while (true)
         {
