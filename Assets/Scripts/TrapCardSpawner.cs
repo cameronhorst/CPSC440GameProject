@@ -18,14 +18,16 @@ public class TrapCardSpawner : MonoBehaviour {
     public float snapDelay;
     public float snapSpeed = 3f;
     public Transform Center;
-    private bool snapping;
+    public bool snapping;
     public float bounds;
     private float minX;
     private float maxX;
     private bool canSlide;
 	public EquipTrapRadial[] trapSlots;			// A refrence to the trap slots that store the traps being equipped.
-
+    public TrapCanvasScript trapCanvasScript;
 	private PlayerState player;
+    public ConfirmationGroup confirmationGroup;
+
 
 	// Use this for initialization
 	void Start ()
@@ -169,6 +171,7 @@ public class TrapCardSpawner : MonoBehaviour {
         for (int i = 0; i < 3; i++)
         {
             TrapCards[i].FadeIn();
+
         }
     }
 
@@ -190,7 +193,10 @@ public class TrapCardSpawner : MonoBehaviour {
         TrapCard thisTrapCard = _trapCard.GetComponent<TrapCard>();
 	thisTrapCard.LoadTrapInSlot(trap);
         TrapCards.Add(thisTrapCard);
-    
+        thisTrapCard.trapCardSpawner = this;
+        thisTrapCard.CenterPoint = Center;
+        thisTrapCard.trapCanvas = trapCanvasScript;
+        thisTrapCard.confirmationGroup = confirmationGroup;
         // Checks if the player has equipped this trap already. If so, it sets this card to the respective trapRadial spot.
         for(int i = 0; i < trapSlots.Length; i++)
         {

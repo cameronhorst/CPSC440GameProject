@@ -10,6 +10,7 @@ TagManager:
   - Alien
   - SoundEffects
   - Unlockables
+  - TrapSliderBounds
   layers:
   - Default
   - TransparentFX

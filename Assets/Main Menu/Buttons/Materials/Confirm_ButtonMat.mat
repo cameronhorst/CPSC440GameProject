@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ui
-  m_Shader: {fileID: 4800000, guid: 83fc1f4d5fbd6ce479c1f488b8053a3e, type: 3}
-  m_ShaderKeywords: UNITY_UI_ALPHACLIP _ALPHAPREMULTIPLY_ON _EMISSION
-  m_LightmapFlags: 0
-  m_CustomRenderQueue: 3200
+  m_Name: Confirm_ButtonMat
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -69,25 +69,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Ramp
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: PixelSnap
-      second: 0
-    - first:
-        name: _AmbientOn
-      second: 0
     - first:
         name: _BumpScale
       second: 1
-    - first:
-        name: _ColorMask
-      second: 15
     - first:
         name: _Cutoff
       second: 0.5
@@ -96,7 +81,7 @@ Material:
       second: 1
     - first:
         name: _DstBlend
-      second: 10
+      second: 0
     - first:
         name: _GlossMapScale
       second: 1
@@ -107,23 +92,17 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
-        name: _InvFade
-      second: 3
-    - first:
         name: _Metallic
       second: 0
     - first:
         name: _Mode
-      second: 3
+      second: 0
     - first:
         name: _OcclusionStrength
       second: 1
     - first:
         name: _Parallax
       second: 0.02
-    - first:
-        name: _Shininess
-      second: 0.1
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -134,48 +113,15 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
-        name: _Stencil
-      second: 0
-    - first:
-        name: _StencilComp
-      second: 8
-    - first:
-        name: _StencilOp
-      second: 0
-    - first:
-        name: _StencilReadMask
-      second: 255
-    - first:
-        name: _StencilWriteMask
-      second: 255
-    - first:
         name: _UVSec
       second: 0
     - first:
-        name: _UseUIAlphaClip
-      second: 1
-    - first:
         name: _ZWrite
-      second: 0
+      second: 1
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0, g: 0.7931032, b: 1, a: 0.834}
-    - first:
-        name: _EmisColor
-      second: {r: 0.88235295, g: 0.31790656, b: 0.31790656, a: 0.572}
-    - first:
-        name: _Emission
-      second: {r: 0.17436202, g: 0.30444014, b: 0.31617647, a: 0}
+      second: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 0, g: 0.79215693, b: 1, a: 1}
-    - first:
-        name: _SpecColor
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _Specular
-      second: {r: 0, g: 0, b: 0, a: 0.941}
-    - first:
-        name: _TintColor
-      second: {r: 0.04411763, g: 0.8417854, b: 1, a: 0.11}
+      second: {r: 0, g: 0, b: 0, a: 1}
