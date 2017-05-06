@@ -15223,6 +15223,9 @@ MonoBehaviour:
   - {fileID: 1877234821352314, guid: 4c68a9b6fdcc56a40af8e43930462e10, type: 2}
   - {fileID: 1133400059069962, guid: 75125951696349e43b1bb2737b3cc6e1, type: 2}
   - {fileID: 1762557847696676, guid: b594743eef52d8047a5bd1a273fa89dc, type: 2}
+  - {fileID: 1961167210848956, guid: 8743003247ed2f74397b481ff4416716, type: 2}
+  - {fileID: 1028206590360366, guid: ba59f6fb9b45ed645954e9efa99f1010, type: 2}
+  - {fileID: 1150062854257082, guid: 49f744ab6ba4da44a91d5ec25bf9e36b, type: 2}
   TrapPage: {fileID: 1212262578}
   SlideDistancePerSecond: 1
   sliding: 0

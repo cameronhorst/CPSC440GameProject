@@ -303,6 +303,7 @@ MonoBehaviour:
   trapIconPos: {fileID: 4342417168458894}
   fadeTime: 0.4
   ObjectsToFade: []
+  StartColor: {r: 0, g: 0.7921569, b: 1, a: 0.8352941}
   StartVisible: 0
   associatedTrap: {fileID: 0}
   checkFadeTime: 0.05
@@ -338,3 +339,4 @@ MonoBehaviour:
   HighlightColor: {r: 0.33899224, g: 0.33899224, b: 0.4044118, a: 0.797}
   trapCanvas: {fileID: 0}
   flashInterval: 0.5
+  confirmationGroup: {fileID: 0}

@@ -10,7 +10,7 @@ public class TrapCard : MonoBehaviour {
     public Transform trapIconPos;
     public float fadeTime = 0.1f;
     public List<MeshRenderer> ObjectsToFade = new List<MeshRenderer>();
-    private Color StartColor;
+    public Color StartColor;
     public bool StartVisible;
 	public static EquipTrapRadial[] trapRadials;	// Refrence to radial buttons. Used to interact with equipTrapRadial
 	public GameObject associatedTrap;// What Trap prefab is associated to this spot?
@@ -28,6 +28,7 @@ public class TrapCard : MonoBehaviour {
     public float flashInterval = 0.2f;
     bool purchaseConfirmation = false;
     public ConfirmationGroup confirmationGroup;
+    private Color normalStartColor;
 
 	// Use this for initialization
 	void Start ()
@@ -98,6 +99,8 @@ public class TrapCard : MonoBehaviour {
     {
         StopCoroutine(TrapPurchaseConfirmation());
         StartCoroutine(FadeToStartColor());
+        StartColor = normalStartColor;
+        associatedTrap.GetComponent<Trap>().unlocked = true;
     }
 
     public void Cancel()
@@ -133,7 +136,7 @@ public class TrapCard : MonoBehaviour {
         {
             for (int i = 0; i < ObjectsToFade.Count; i++)
             {
-                ObjectsToFade[i].material.color = Color.Lerp(startColor, StartColor, (Time.time - startTime) / fadeTime);
+                ObjectsToFade[i].material.color = Color.Lerp(startColor, normalStartColor, (Time.time - startTime) / fadeTime);
             }
             yield return null;
         }
@@ -153,11 +156,11 @@ public class TrapCard : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
-                end = true;
-                startTime = Time.time;
-                startColor = ObjectsToFade[0].material.color;
-                targetColor = LockedColor;
+                canvasOpen = false;
+                trapCanvas.Close();
+                purchaseConfirmation = false;
                 confirmationGroup.FadeOut();
+                yield break;
             }
 
             for (int i = 0; i < ObjectsToFade.Count; i++)
@@ -366,8 +369,11 @@ public class TrapCard : MonoBehaviour {
 	{
 		if(trapRadials == null)
 			trapRadials = GameObject.FindObjectsOfType<EquipTrapRadial>();
-	}
-	
+
+        normalStartColor = StartColor;
+
+    }
+
     public void LoadTrapInSlot(GameObject trap)
     {
 		GameObject _trap = (GameObject)Instantiate(trap.GetComponent<Trap>().icon, trapIconPos.position, Quaternion.identity, trapIconPos);

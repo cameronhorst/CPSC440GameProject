@@ -195,12 +195,13 @@ public class TrapCardSpawner : MonoBehaviour {
     {
         GameObject _trapCard = (GameObject)Instantiate(TrapCard, pos, transform.rotation, Slider);
         TrapCard thisTrapCard = _trapCard.GetComponent<TrapCard>();
-	thisTrapCard.LoadTrapInSlot(trap);
+	    thisTrapCard.LoadTrapInSlot(trap);
         TrapCards.Add(thisTrapCard);
         thisTrapCard.trapCardSpawner = this;
         thisTrapCard.CenterPoint = Center;
         thisTrapCard.trapCanvas = trapCanvasScript;
         thisTrapCard.confirmationGroup = confirmationGroup;
+        
         // Checks if the player has equipped this trap already. If so, it sets this card to the respective trapRadial spot.
         for(int i = 0; i < trapSlots.Length; i++)
         {

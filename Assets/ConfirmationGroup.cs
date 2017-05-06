@@ -23,6 +23,7 @@ public class ConfirmationGroup : MonoBehaviour
     {
         if(trapcard != null)
         {
+            Debug.Log("confirm");
             trapcard.Purchase();
         }
     }
@@ -31,6 +32,7 @@ public class ConfirmationGroup : MonoBehaviour
     {
         if (trapcard != null)
         {
+            Debug.Log("Cancel");
             trapcard.Cancel();
         }
     }
